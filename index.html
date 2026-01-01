@@ -1,579 +1,570 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StrideOn ⚡️ — The City Is Your Arena</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <title>STRIDEON // INVESTOR DECK</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
     <style>
-        @keyframes subtle-gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+        /* --- STRIDE OS: PITCH DECK THEME --- */
+        :root {
+            --c-void: #050505;
+            --c-depth: #0A0A0A;
+            --c-surface: #141414;
+            --c-text-primary: #FFFFFF;
+            --c-text-secondary: #888888;
+            --c-acid: #D4FF00;
+            --c-acid-glow: rgba(212, 255, 0, 0.15);
+            --c-alert: #FF3B30;
+            --font-head: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            /* Black */
-            color: #CBD5E1;
-            /* slate-300 */
-            background-image: radial-gradient(#1e293b 1px, transparent 1px);
-            background-size: 30px 30px;
-            overflow-x: hidden;
-            /* Prevent horizontal scrollbars */
+            background-color: var(--c-void);
+            color: var(--c-text-primary);
+            font-family: var(--font-body);
+            overflow: hidden;
         }
 
-        .hero-gradient-text {
-            background: linear-gradient(to right, #a3e635, #d9f99d);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: subtle-gradient 10s ease infinite;
+        /* --- SNAP SCROLL CONTAINER --- */
+        .deck-container {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
         }
 
-        .section-title {
-            background: linear-gradient(to right, #e2e8f0, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* --- SLIDE COMMON STYLES --- */
+        section {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
         }
 
-        .feature-card {
-            background-color: rgba(15, 23, 42, 0.5);
-            /* slate-900 with opacity */
-            border: 1px solid #1e293b;
-            /* slate-800 */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: #a3e635;
-            box-shadow: 0 0 25px -5px rgba(163, 230, 53, 0.25);
+        .slide-content.center {
+            grid-template-columns: 1fr;
+            text-align: center;
+            justify-items: center;
         }
 
-        .btn {
+        /* --- TYPOGRAPHY --- */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+
+        .slide-tag {
+            color: var(--c-acid);
+            font-family: var(--font-head);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            display: inline-block;
+            border: 1px solid var(--c-acid);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        h2 {
+            font-size: clamp(3rem, 5vw, 5rem);
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: var(--c-text-secondary);
+            line-height: 1.6;
+            max-width: 60ch;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .text-acid {
+            color: var(--c-acid);
+        }
+
+        .text-alert {
+            color: var(--c-alert);
+        }
+
+        /* --- VISUAL ELEMENTS --- */
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--c-acid-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: pulse 10s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        /* --- COMPONENTS --- */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--font-head);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--c-acid);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- NAVIGATION DOTS --- */
+        .nav-dots {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .btn-primary {
-            background-color: #65a30d;
-            /* lime-600 */
-            box-shadow: 0 0 15px rgba(163, 230, 53, 0.2);
+        .dot.active {
+            background: var(--c-acid);
+            box-shadow: 0 0 10px var(--c-acid);
+            transform: scale(1.5);
         }
 
-        .btn-primary:hover {
-            background-color: #84cc16;
-            /* lime-500 */
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(163, 230, 53, 0.5);
-        }
-
-        .btn-secondary {
-            background-color: #1e293b;
-            /* slate-800 */
-        }
-
-        .btn-secondary:hover {
-            background-color: #334155;
-            /* slate-700 */
-            transform: scale(1.05);
-        }
-
-        /* Animation utility */
-        .fade-in-section {
+        /* --- ANIMATIONS --- */
+        .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .fade-in-section.is-visible {
+        section.active .reveal {
             opacity: 1;
             transform: translateY(0);
         }
-        /* 3D carousel helpers */
-        .perspective-3d { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        #hero-slideshow .slide { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-        /* Subtle inner shadow for depth */
-        #hero-slideshow::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 30px 60px rgba(0,0,0,0.35), inset 0 -30px 60px rgba(0,0,0,0.35); border-radius: 1.5rem; }
-        /* Nav buttons: barely visible, reveal a bit on hover/focus */
-        .carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: rgba(15,23,42,0.6); color: rgba(255,255,255,0.9); border: 1px solid rgba(148,163,184,0.25); opacity: 0.15; transition: opacity 0.2s ease, background 0.2s ease; z-index: 10; }
-        .carousel-nav:hover, .carousel-nav:focus { opacity: 0.5; outline: none; background: rgba(15,23,42,0.8); }
-        .carousel-nav:focus-visible { box-shadow: 0 0 0 3px rgba(163,230,53,0.35); }
-        .carousel-prev { left: 8px; }
-        .carousel-next { right: 8px; }
+
+        /* Stagger delays */
+        .d-1 {
+            transition-delay: 0.1s;
+        }
+
+        .d-2 {
+            transition-delay: 0.2s;
+        }
+
+        .d-3 {
+            transition-delay: 0.3s;
+        }
+
+        .d-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* --- DIAGRAMS --- */
+        .diagram-box {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+        }
+
+        .diagram-arrow {
+            color: #666;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Header / Nav -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-slate-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <svg class="w-8 h-8 text-lime-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                    <path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z" fill="currentColor"/>
-                </svg>
-                <h1 class="text-2xl font-bold text-white">StrideOn</h1>
-            </div>
+    <div class="nav-dots" id="dots"></div>
 
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="https://www.notion.so/Complete-Technical-Architecture-Data-Flow-25eda6675e0c80228517e6003ed156c7?source=copy_link"
-                    target="_blank" rel="noopener noreferrer" title="Documentation (Notion)"
-                    class="text-slate-400 hover:text-white transition-colors font-medium" aria-label="Planning">
-                    Planning
-                </a>
-                <a href="https://www.figma.com/board/TDvmb7NZhGjIIskTa9DAgy/StrideOn?node-id=0-1&t=XZz5CEsqnGmjazmq-1"
-                    target="_blank" rel="noopener noreferrer" title="Architecture (Figma)"
-                    class="text-slate-400 hover:text-white transition-colors font-medium" aria-label="Architecture">
-                    Architecture
-                </a>
-                <a href="#beta" class="btn btn-primary text-white font-semibold py-2 px-5 rounded-lg shadow-md ml-4">
-                    Request Access
-                </a>
-            </div>
+    <div class="deck-container" id="deck">
 
-            <!-- Mobile Button -->
-            <a href="#beta" class="md:hidden btn btn-primary text-white font-semibold py-2 px-5 rounded-lg shadow-md">
-                Request Access
-            </a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <main class="pt-24">
-        <section class="min-h-screen flex items-center justify-center text-center py-20 px-6 relative">
-            <div class="absolute inset-0 -z-10 bg-gradient-to-b from-black via-transparent to-black"></div>
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-lime-500/10 rounded-full filter blur-3xl animate-pulse">
-            </div>
-            <div
-                class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full filter blur-3xl animate-pulse animation-delay-4000">
-            </div>
-
-            <div class="max-w-4xl mx-auto z-10">
-                <span
-                    class="inline-block bg-slate-800 text-lime-400 text-sm font-semibold px-4 py-1 rounded-full mb-4 border border-slate-700">Announcing
-                    StrideOn — From the #VERYHackathon</span>
-                <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-4">The City Is Your <span
-                        class="hero-gradient-text">Arena.</span></h2>
-                <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-8">
-                    A decentralized, move-to-earn game that turns your morning run into a real-world, strategic game for
-                    territory. Claim your city, one step at a time.
-                </p>
-                <div class="flex justify-center items-center gap-4 mb-16">
-                    <a href="#beta"
-                        class="btn btn-primary text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg">Request
-                        Early Access</a>
-                    <a href="https://github.com/chandan989/StrideOn" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-secondary text-white font-bold py-3 px-8 rounded-lg text-lg">View on GitHub</a>
+        <!-- SLIDE 1: TITLE -->
+        <section id="slide-1" class="active">
+            <div class="grid-bg"></div>
+            <div class="glow-orb" style="top: -20%; right: -10%;"></div>
+            <div class="slide-content">
+                <div>
+                    <div class="slide-tag reveal d-1">iOS NATIVE • VERY NETWORK</div>
+                    <h1 class="reveal d-2" style="font-size: 6rem; margin-bottom: 24px;">
+                        STRIDE<span class="text-acid">//</span>ON
+                    </h1>
+                    <p class="reveal d-3" style="font-size: 1.5rem; color: white;">
+                        The first <span class="text-acid">Kinetic Territory Protocol</span>.<br>
+                        Gamifying the physical world.
+                    </p>
                 </div>
-                <!-- Hero Slideshow -->
-                <div class="flex justify-center">
-                    <div class="relative w-full max-w-sm h-[500px] overflow-hidden rounded-3xl" aria-label="StrideOn app screenshots slideshow" role="region">
-                        <div class="absolute -inset-2 bg-gradient-to-r from-lime-500 to-green-500 rounded-3xl blur-xl opacity-40"></div>
+                <div class="reveal d-3" style="display: flex; justify-content: center;">
+                    <!-- Logo Image -->
+                    <img src="../logo.svg" alt="StrideOn Logo" style="width: 300px; height: auto;">
+                </div>
+            </div>
+        </section>
 
-                        <div id="hero-slideshow" class="relative h-full perspective-3d">
-                            <div class="track w-full h-full transform-style-3d transition-transform duration-700 ease-in-out">
-                            <img src="Home.png" alt="StrideOn Home screen" class="slide relative rounded-3xl border-2 border-slate-700 shadow-2xl w-full h-full object-cover opacity-100 transition-opacity duration-700 ease-in-out">
-                            <img src="Map.png" alt="StrideOn Map screen" class="slide absolute top-0 left-0 rounded-3xl border-2 border-slate-700 shadow-2xl w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out">
-                            <img src="Powerups.png" alt="StrideOn Powerups screen" class="slide absolute top-0 left-0 rounded-3xl border-2 border-slate-700 shadow-2xl w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out">
-                            <img src="Powerups2.png" alt="StrideOn Powerups screen 2" class="slide absolute top-0 left-0 rounded-3xl border-2 border-slate-700 shadow-2xl w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-in-out">
+        <!-- SLIDE 2: THE PROBLEM -->
+        <section id="slide-2">
+            <div class="slide-content center">
+                <div class="slide-tag reveal d-1">THE PROBLEM</div>
+                <h2 class="reveal d-2">FIXING <span class="text-alert">PONZI-WALK</span> ECONOMICS</h2>
+                <p class="reveal d-3">
+                    Most Move-to-Earn games failed because they paid old users with new users' money.
+                    <br>We solved the "StepN Collapse" by removing the pyramid.
+                </p>
+
+                <div class="stat-grid reveal d-4" style="width: 100%; max-width: 1000px;">
+                    <div class="stat-box">
+                        <div class="stat-num text-alert">95%</div>
+                        <div class="stat-label">Collapse Rate</div>
+                        <p style="font-size: 0.9rem; margin-top: 12px;">Of M2E games relying on inflation.</p>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num text-white">30d</div>
+                        <div class="stat-label">Web2 Churn</div>
+                        <p style="font-size: 0.9rem; margin-top: 12px;">Fitness apps are boring without stakes.</p>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num text-acid">0</div>
+                        <div class="stat-label">Real Utility</div>
+                        <p style="font-size: 0.9rem; margin-top: 12px;">Most games have no external revenue.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: THE SOLUTION -->
+        <section id="slide-3">
+            <div class="grid-bg"></div>
+            <div class="slide-content">
+                <div>
+                    <div class="slide-tag reveal d-1">THE SOLUTION</div>
+                    <h2 class="reveal d-2">KINETIC<br><span class="text-acid">HEX-GRIDS</span></h2>
+                    <p class="reveal d-3">
+                        We don't just track steps. We turn your city into a <strong>risk-based strategy game</strong>.
+                        <br><br>
+                        • <strong>Move:</strong> Run to paint H3 Hex-Grids.<br>
+                        • <strong>Sever:</strong> Cut rival lines to steal points.<br>
+                        • <strong>Bank:</strong> Reach physical landmarks to secure crypto.
+                    </p>
+                </div>
+                <div class="reveal d-2">
+                    <!-- Tech Stack Viz -->
+                    <div class="diagram-box">
+                        <h4 style="color: var(--c-acid); margin-bottom: 16px;">HYBRID ARCHITECTURE</h4>
+                        <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 16px;">
+                            <div style="background: #222; padding: 12px; border-radius: 8px; flex: 1;">
+                                <div style="color: #888; font-size: 0.8rem;">OFF-CHAIN (SPEED)</div>
+                                <div style="font-weight: 700;">FastAPI + Redis</div>
+                            </div>
+                            <div class="diagram-arrow">→</div>
+                            <div style="background: #222; padding: 12px; border-radius: 8px; flex: 1;">
+                                <div style="color: #888; font-size: 0.8rem;">ON-CHAIN (TRUST)</div>
+                                <div style="font-weight: 700;">Very Network</div>
                             </div>
                         </div>
+                        <p style="font-size: 0.9rem;">High-frequency 5Hz GPS tracking meets trustless settlement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Prev/Next (barely visible) -->
-                        <button class="carousel-nav carousel-prev" aria-label="Previous slide" type="button">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
-                        </button>
-                        <button class="carousel-nav carousel-next" aria-label="Next slide" type="button">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
-                        </button>
+        <!-- SLIDE 4: AI INJECTION -->
+        <section id="slide-4">
+            <div class="slide-content center">
+                <div class="slide-tag reveal d-1">DYNAMIC GAMEPLAY</div>
+                <h2 class="reveal d-2">AI-DRIVEN <span class="text-acid">INJECTION</span></h2>
+                <p class="reveal d-3">
+                    The map isn't static. Our AI Manager analyzes player density in real-time.
+                </p>
 
-                        <!-- Dots -->
-                        <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10" aria-hidden="true">
-                            <span class="dot w-2 h-2 rounded-full bg-white/40"></span>
-                            <span class="dot w-2 h-2 rounded-full bg-white/40"></span>
-                            <span class="dot w-2 h-2 rounded-full bg-white/40"></span>
-                            <span class="dot w-2 h-2 rounded-full bg-white/40"></span>
+                <div class="reveal d-4" style="display: flex; gap: 40px; margin-top: 40px; justify-content: center;">
+                    <div class="stat-box" style="text-align: left; max-width: 400px;">
+                        <h3 class="text-acid">🔥 HOTSPOTS</h3>
+                        <p style="font-size: 1rem; margin-top: 10px;">
+                            If runners cluster in a park, the AI spawns a temporary "Gold Rush" chest, forcing immediate
+                            PvP conflict.
+                        </p>
+                    </div>
+                    <div class="stat-box" style="text-align: left; max-width: 400px;">
+                        <h3 class="text-white">🎯 BRAND LOOPS</h3>
+                        <p style="font-size: 1rem; margin-top: 10px;">
+                            AI identifies commercial zones (e.g., Nike Store) and injects "Sponsored Routes" funded by
+                            advertisers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: SUSTAINABLE ECONOMY -->
+        <section id="slide-5">
+            <div class="slide-content center">
+                <div class="slide-tag reveal d-1">REVENUE-FIRST MODEL</div>
+                <h2 class="reveal d-2">SINK & SOURCE</h2>
+                <p class="reveal d-3" style="margin-bottom: 40px;">
+                    We monetize <strong>attention and foot traffic</strong>, not just new users.
+                </p>
+
+                <div class="reveal d-3"
+                    style="display: flex; gap: 20px; align-items: center; justify-content: center; width: 100%;">
+                    <!-- Source -->
+                    <div style="text-align: right; width: 300px;">
+                        <h4 style="color: var(--c-acid); font-size: 1.5rem;">REVENUE SOURCE</h4>
+                        <p style="font-size: 0.9rem; margin-top: 8px;">
+                            • B2B Sponsorships ($50/mo)<br>
+                            • Ad-Injection Fees<br>
+                            • <strong>Pegged to USD (Crash Proof)</strong>
+                        </p>
+                    </div>
+
+                    <!-- Flow -->
+                    <div style="width: 50px; height: 2px; background: #444;"></div>
+                    <div
+                        style="border: 2px solid white; padding: 30px; border-radius: 50%; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; font-weight: 900;">
+                        VAULT
+                    </div>
+                    <div style="width: 50px; height: 2px; background: #444;"></div>
+
+                    <!-- Sink -->
+                    <div style="text-align: left; width: 300px;">
+                        <h4 style="color: var(--c-alert); font-size: 1.5rem;">TOKEN SINK</h4>
+                        <p style="font-size: 0.9rem; margin-top: 8px;">
+                            • Territory Shields (100% Burn)<br>
+                            • PvP Wagers (10% Burn)<br>
+                            • Ghost Mode Power-ups
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: VERY INTEGRATION -->
+        <section id="slide-6">
+            <div class="grid-bg"></div>
+            <div class="slide-content">
+                <div>
+                    <div class="slide-tag reveal d-1">ECOSYSTEM</div>
+                    <h2 class="reveal d-2">DEEP <span class="text-acid">VERY</span> INTEGRATION</h2>
+                    <p class="reveal d-3">
+                        We don't just use the chain; we use the entire stack.
+                    </p>
+                    <ul class="reveal d-4"
+                        style="list-style: none; margin-top: 30px; color: #CCC; font-size: 1.1rem; line-height: 2;">
+                        <li>💬 <strong>VeryChat Identity:</strong> Log in with Chat ID (No Seed Phrase).</li>
+                        <li>🚨 <strong>Social War Room:</strong> Attack alerts sent via Webhooks to DMs.</li>
+                        <li>💳 <strong>VeryPay (Wepin):</strong> Fiat on-ramp for non-crypto users.</li>
+                    </ul>
+                </div>
+                <div class="reveal d-2" style="text-align: center;">
+                    <!-- Phone Mockup Graphic -->
+                    <div
+                        style="border: 4px solid #333; border-radius: 30px; width: 300px; height: 600px; background: #000; margin: 0 auto; position: relative; overflow: hidden;">
+                        <div
+                            style="position: absolute; top: 20px; left: 20px; right: 20px; background: #222; padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 0.7rem; color: #888;">VERYCHAT NOTIFICATION</div>
+                            <div style="color: white; margin-top: 5px; font-weight: 700;">⚠️ SECTOR 17 LOST!</div>
+                            <div style="color: var(--c-acid); font-size: 0.8rem; margin-top: 5px;">Tap to Reclaim</div>
+                        </div>
+                        <div
+                            style="position: absolute; bottom: 0; left: 0; right: 0; height: 400px; background: linear-gradient(to top, var(--c-acid-glow), transparent);">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- What Makes StrideOn Different? -->
-        <section id="features" class="py-24 px-6 bg-black/50 fade-in-section">
-            <div class="container mx-auto max-w-6xl">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold section-title">A New Breed of Fitness App</h2>
-                    <p class="mt-4 text-lg text-slate-400">This isn't just about tracking miles. We've designed a game
-                        of strategy, skill, and real-time rivalry.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="feature-card p-8 rounded-xl text-center">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-12 h-12 text-lime-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                </path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Paper.io Meets the Real World</h3>
-                        <p class="text-slate-400">As you run, you draw a trail on a live H3 hex grid. Close the loop to
-                            claim the territory you've enclosed. Bigger risks bring bigger rewards.</p>
+        <!-- SLIDE 7: ROADMAP -->
+        <section id="slide-7">
+            <div class="slide-content center">
+                <div class="slide-tag reveal d-1">EXECUTION</div>
+                <h2 class="reveal d-2">ROADMAP</h2>
+
+                <div class="stat-grid reveal d-3" style="width: 100%; text-align: left;">
+                    <div class="stat-box" style="text-align: left; border-color: var(--c-acid);">
+                        <div class="stat-label" style="color: var(--c-acid); margin-bottom: 16px;">PHASE 1 (NOW)</div>
+                        <h3 style="color: white; margin-bottom: 12px;">HACKATHON BETA</h3>
+                        <ul style="color: #888; list-style-position: inside; line-height: 1.8;">
+                            <li>iOS Alpha Live</li>
+                            <li>Core PvP Loop</li>
+                            <li>VeryChat Alerts</li>
+                        </ul>
                     </div>
-                    <!-- Feature 2 -->
-                    <div class="feature-card p-8 rounded-xl text-center" style="transition-delay: 100ms">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-12 h-12 text-lime-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M13.4 2.6L10.6 5.4" />
-                                <path d="M13.4 18.6L10.6 21.4" />
-                                <path d="M2.6 10.6L5.4 13.4" />
-                                <path d="M18.6 10.6L21.4 13.4" />
-                                <path d="M17 7L7 17" />
-                                <path d="M7 7L17 17" />
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Tactical Real-Time Rivalry</h3>
-                        <p class="text-slate-400">Your active trail is a vulnerability. Nearby runners can sprint to
-                            physically cross your line, cutting your claim and creating intense, tactical chases.</p>
+                    <div class="stat-box" style="text-align: left;">
+                        <div class="stat-label" style="color: #666; margin-bottom: 16px;">PHASE 2 (Q1 2026)</div>
+                        <h3 style="color: white; margin-bottom: 12px;">SQUAD WARS</h3>
+                        <ul style="color: #888; list-style-position: inside; line-height: 1.8;">
+                            <li>Team Battles</li>
+                            <li>Neighborhood DAOs</li>
+                            <li>Fiat On-Ramp</li>
+                        </ul>
                     </div>
-                    <!-- Feature 3 -->
-                    <div class="feature-card p-8 rounded-xl text-center" style="transition-delay: 200ms">
-                        <div class="flex justify-center mb-4">
-                            <svg class="w-12 h-12 text-lime-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">On-Chain Fairness</h3>
-                        <p class="text-slate-400">The Very Network is our source of truth. Final territory claims,
-                            ranks, and rewards are recorded on-chain for transparent, tamper-proof results.</p>
+                    <div class="stat-box" style="text-align: left;">
+                        <div class="stat-label" style="color: #666; margin-bottom: 16px;">PHASE 3 (Q3 2026)</div>
+                        <h3 style="color: white; margin-bottom: 12px;">B2B PLATFORM</h3>
+                        <ul style="color: #888; list-style-position: inside; line-height: 1.8;">
+                            <li>Self-Serve Ads</li>
+                            <li>Global Expansion</li>
+                            <li>Governance Token</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Architecture Section -->
-        <section class="py-24 px-6 fade-in-section">
-            <div class="container mx-auto max-w-5xl text-center">
-                <h2 class="text-4xl md:text-5xl font-bold section-title">Built for Speed & Security</h2>
-                <p class="mt-4 text-lg text-slate-400">StrideOn uses a smart hybrid architecture to deliver a lag-free
-                    experience with trustless security.</p>
-                <div class="mt-16 grid md:grid-cols-2 gap-8 text-left">
-                    <div class="feature-card p-8 rounded-xl">
-                        <h3 class="text-2xl font-bold text-white mb-3">⚡️ Lag-Free Experience</h3>
-                        <p class="text-slate-400">Our centralized game server, using Redis for caching, handles all the
-                            fast, real-time gameplay. This includes live GPS tracking and instant collision detection
-                            for breaking Strides, ensuring the game is always responsive.</p>
-                    </div>
-                    <div class="feature-card p-8 rounded-xl" style="transition-delay: 100ms">
-                        <h3 class="text-2xl font-bold text-white mb-3">🔗 Trustless Security</h3>
-                        <p class="text-slate-400">The Very Network is our secure trust layer. Our Smart Contract handles
-                            only the most critical actions: securely "banking" players' final scores and transparently
-                            distributing daily rewards in VERY tokens.</p>
-                    </div>
+        <!-- SLIDE 8: CTA -->
+        <section id="slide-8">
+            <div class="glow-orb"></div>
+            <div class="slide-content center">
+                <h2 class="reveal d-1">READY TO DEPLOY?</h2>
+                <div class="reveal d-2" style="display: flex; gap: 20px;">
+                    <a href="https://www.youtube.com/watch?v=z3qVbHfGXVc" target="_blank"
+                        style="background: var(--c-acid); color: black; padding: 20px 48px; border-radius: 50px; text-decoration: none; font-weight: 700; font-family: var(--font-head); text-transform: uppercase;">
+                        Watch Demo
+                    </a>
+                    <a href="https://github.com/chandan989/StrideOn" target="_blank"
+                        style="background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); padding: 20px 48px; border-radius: 50px; text-decoration: none; font-weight: 700; font-family: var(--font-head); text-transform: uppercase;">
+                        View GitHub
+                    </a>
                 </div>
+                <p class="reveal d-3" style="margin-top: 40px; font-size: 0.9rem;">
+                    Built by Team StrideOn for the Very Network Hackathon.
+                </p>
             </div>
         </section>
 
-        <!-- Rewards & Economy Section -->
-        <section id="economy" class="py-24 px-6 bg-black/50 fade-in-section">
-            <div class="container mx-auto max-w-6xl">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold section-title">How You Play to Win</h2>
-                    <p class="mt-4 text-lg text-slate-400">StrideOn is built around a simple, sustainable token loop
-                        tied directly to gameplay.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="feature-card p-6 rounded-xl">
-                        <h3 class="text-xl font-bold text-white mb-2">🏆 Daily Leaderboards</h3>
-                        <p class="text-slate-400">Capture the most territory to climb the daily leaderboard in your city
-                            and earn VERY token rewards.</p>
-                    </div>
-                    <div class="feature-card p-6 rounded-xl" style="transition-delay: 100ms">
-                        <h3 class="text-xl font-bold text-white mb-2">🛡️ Shield</h3>
-                        <p class="text-slate-400">Protect your active trail for a short window to safely bank a huge
-                            territory claim.</p>
-                    </div>
-                    <div class="feature-card p-6 rounded-xl" style="transition-delay: 200ms">
-                        <h3 class="text-xl font-bold text-white mb-2">👻 Ghost Mode</h3>
-                        <p class="text-slate-400">Go temporarily invisible on the map to secure large territories
-                            without being detected by rivals.</p>
-                    </div>
-<!--                     <div class="feature-card p-6 rounded-xl" style="transition-delay: 300ms">
-                        <h3 class="text-xl font-bold text-white mb-2">💨 Speed Boost</h3>
-                        <p class="text-slate-400">Temporarily increase your effective claiming rate to outpace rivals on
-                            a long run.</p>
-                    </div> -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Project Hub Section -->
-        <section class="py-24 px-6 fade-in-section">
-            <div class="container mx-auto max-w-5xl text-center">
-                <h2 class="text-4xl md:text-5xl font-bold section-title">Project Hub & Tech Stack</h2>
-                <p class="mt-4 text-lg text-slate-400">Explore our documentation, architecture, and the code that powers
-                    StrideOn.</p>
-                <div class="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                    <!-- Notion -->
-                    <a href="https://www.notion.so/Complete-Technical-Architecture-Data-Flow-25eda6675e0c80228517e6003ed156c7?source=copy_link"
-                        target="_blank" rel="noopener noreferrer"
-                        class="feature-card p-6 rounded-xl flex flex-col items-center justify-center text-center"><svg
-                            class="w-12 h-12 text-white mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                            </path>
-                        </svg>
-                        <h3 class="font-bold text-white mt-2">Documentation</h3>
-                    </a>
-                    <!-- Figma -->
-                    <a href="https://www.figma.com/board/TDvmb7NZhGjIIskTa9DAgy/StrideOn?node-id=0-1&t=XZz5CEsqnGmjazmq-1"
-                        target="_blank" rel="noopener noreferrer"
-                        class="feature-card p-6 rounded-xl flex flex-col items-center justify-center text-center"><svg
-                            class="w-12 h-12 text-white mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M10 20v-6m0 0V4m0 10h5.5a2.5 2.5 0 002.5-2.5V6.5a2.5 2.5 0 00-2.5-2.5H10m0 10H4.5A2.5 2.5 0 012 11.5v-1A2.5 2.5 0 014.5 8H10">
-                            </path>
-                        </svg>
-                        <h3 class="font-bold text-white mt-2">Architecture</h3>
-                    </a>
-                    <!-- Blockchain Code -->
-                    <a href="https://github.com/chandan989/StrideOn/tree/main/very-network-integration" target="_blank"
-                        rel="noopener noreferrer"
-                        class="feature-card p-6 rounded-xl flex flex-col items-center justify-center text-center">
-                        <svg class="w-12 h-12 text-white mb-3" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
-                            <path d="M21 7.5L8 7.5" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                            <path d="M21 12L8 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                            <path d="M21 16.5L8 16.5" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                            <path d="M4.5 19.5L4.5 4.5L2 7.5" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                        </svg>
-                        <h3 class="font-bold text-white mt-2">Blockchain Code</h3>
-                    </a>
-                    <!-- Mobile -->
-                    <a href="https://github.com/chandan989/StrideOn/tree/main/StrideonApp" target="_blank"
-                        rel="noopener noreferrer"
-                        class="feature-card p-6 rounded-xl flex flex-col items-center justify-center text-center">
-                        <svg class="w-12 h-12 text-white mb-3" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
-                            <path
-                                d="M18 14V20C18 21.1046 17.1046 22 16 22H8C6.89543 22 6 21.1046 6 20V4C6 2.89543 6.89543 2 8 2H12"
-                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M12 2L12 6L14 4" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                            <path d="M12 2L10 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                            <path d="M18 14H22M22 14L20 12M22 14L20 16" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                        </svg>
-                        <h3 class="font-bold text-white mt-2">Mobile App Code</h3>
-                    </a>
-                    <!-- Python -->
-                    <a href="https://github.com/chandan989/StrideOn/tree/main/StrideonBackend" target="_blank"
-                        rel="noopener noreferrer"
-                        class="feature-card p-6 rounded-xl flex flex-col items-center justify-center text-center">
-                        <svg class="w-12 h-12 text-white mb-3" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
-                            <path d="M14 2L18 6L14 10" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                            <path d="M10 22L6 18L10 14" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                            <path d="M18 6L6 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                        </svg>
-                        <h3 class="font-bold text-white mt-2">Backend Code</h3>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Future is Social -->
-        <section class="py-24 px-6 fade-in-section">
-            <div class="container mx-auto max-w-5xl text-center">
-                <h2 class="text-4xl md:text-5xl font-bold section-title">The Future is Social</h2>
-                <p class="mt-4 text-lg text-slate-400">The hackathon is just the beginning. StrideOn is designed to be
-                    played together.</p>
-                <div class="mt-16 grid md:grid-cols-3 gap-8 text-center">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-white mb-2">Form Guilds</h3>
-                        <p class="text-slate-400">Team up with friends in Verychat to form local Guilds and strategize
-                            your city's takeover.</p>
-                    </div>
-                    <div class="p-8" style="transition-delay: 100ms">
-                        <h3 class="text-2xl font-bold text-white mb-2">Coordinate & Conquer</h3>
-                        <p class="text-slate-400">Work together in real-time to claim and defend entire neighborhoods in
-                            weekly Guild vs. Guild leaderboards.</p>
-                    </div>
-                    <div class="p-8" style="transition-delay: 200ms">
-                        <h3 class="text-2xl font-bold text-white mb-2">City-Wide Events</h3>
-                        <p class="text-slate-400">Participate in live, city-scale events and sponsored challenges that
-                            bring the entire community together.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- MVP & Beta Access -->
-        <section id="beta" class="py-24 px-6 bg-gradient-to-t from-black to-black/50 fade-in-section">
-            <div class="container mx-auto max-w-3xl text-center">
-                <h2 class="text-4xl font-bold text-white">Join the Private Beta</h2>
-                <p class="mt-4 text-lg text-slate-400">We're shipping an Android MVP from Chandigarh with a live map,
-                    grid-claiming, and leaderboards. We're running a controlled private beta to ensure a polished,
-                    secure experience before a wider release.</p>
-                <p class="mt-6 text-xl text-lime-300 font-semibold">Want early access to the hackathon demo?</p>
-                <div class="mt-8">
-                    <a href="https://www.linkedin.com/in/chandan-elykid/" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-primary text-white font-bold py-4 px-10 rounded-lg text-xl shadow-lg inline-block">
-                        Message Us on LinkedIn
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black border-t border-slate-800">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
-            <p class="text-lg font-semibold text-slate-300">StrideOn ⚡️</p>
-            <p class="mt-2">Built with ❤️ by Chandan and Nikhil in India.</p>
-            <div class="flex justify-center mt-4 space-x-6">
-                <a href="https://www.linkedin.com/feed/update/urn:li:activity:7367178852571226113/" target="_blank"
-                    rel="noopener noreferrer" class="hover:text-lime-400 transition">LinkedIn</a>
-                <a href="https://github.com/chandan989/StrideOn" target="_blank" rel="noopener noreferrer"
-                    class="hover:text-lime-400 transition">GitHub</a>
-            </div>
-            <div class="mt-6 text-xs text-slate-600">
-                #StrideOn #VERYHackathon #MoveToEarn #Web3 #Gaming #H3 #Geospatial #VeryNetwork
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+        // --- DOT NAVIGATION LOGIC ---
+        const sections = document.querySelectorAll('section');
+        const dotsContainer = document.getElementById('dots');
+        const container = document.getElementById('deck');
+
+        // Create dots
+        sections.forEach((sec, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+
+            dot.addEventListener('click', () => {
+                sec.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            dotsContainer.appendChild(dot);
+        });
+
+        // Update active dot on scroll
+        container.addEventListener('scroll', () => {
+            const dots = document.querySelectorAll('.dot');
+            let current = '';
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                if (container.scrollTop >= (sectionTop - 100)) { // Threshold
+                    current = index;
                 }
             });
-        }, {
-            threshold: 0.1
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            if (current !== '') {
+                dots[current].classList.add('active');
+                sections[current].classList.add('active');
+            }
         });
-
-        const sections = document.querySelectorAll('.fade-in-section');
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Hero slideshow logic (3D carousel)
-        (function () {
-            const root = document.getElementById('hero-slideshow');
-            if (!root) return;
-            const track = root.querySelector('.track');
-            const slides = Array.from(root.querySelectorAll('.slide'));
-            const dots = Array.from(root.parentElement.querySelectorAll('.dot'));
-            const btnPrev = root.parentElement.querySelector('.carousel-prev');
-            const btnNext = root.parentElement.querySelector('.carousel-next');
-            const n = slides.length;
-            if (!n) return;
-
-            // Arrange slides in a 3D ring
-            const angle = 360 / n;
-            const radius = 300; // px depth for translateZ
-            slides.forEach((s, i) => {
-                s.style.position = 'absolute';
-                s.style.top = '0';
-                s.style.left = '0';
-                s.style.width = '100%';
-                s.style.height = '100%';
-                s.style.opacity = '1';
-                s.style.transform = `rotateY(${i * angle}deg) translateZ(${radius}px)`;
-            });
-
-            let idx = 0;
-            let timer;
-
-            function updateDots(i) {
-                dots.forEach((d, j) => {
-                    d.style.backgroundColor = j === i ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)';
-                });
-            }
-
-            function go(i) {
-                idx = (i + n) % n;
-                const rot = -idx * angle;
-                track.style.transform = `translateZ(-${radius}px) rotateY(${rot}deg)`;
-                updateDots(idx);
-                restart();
-            }
-
-            function next() { go(idx + 1); }
-            function prev() { go(idx - 1); }
-
-            function start() {
-                timer = setInterval(next, 3000);
-            }
-            function stop() {
-                clearInterval(timer);
-            }
-            function restart() { stop(); start(); }
-
-            // Init
-            track.style.transform = `translateZ(-${radius}px) rotateY(0deg)`;
-            updateDots(0);
-            start();
-
-            // Controls
-            if (btnNext) btnNext.addEventListener('click', next);
-            if (btnPrev) btnPrev.addEventListener('click', prev);
-            // Pause on hover for better UX
-            root.parentElement.addEventListener('mouseenter', stop);
-            root.parentElement.addEventListener('mouseleave', start);
-        })();
     </script>
-
 </body>
 
 </html>
